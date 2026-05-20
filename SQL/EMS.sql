@@ -55,7 +55,6 @@ INSERT INTO Projects VALUES
 
 SELECT * FROM Projects;
 
-
 -- SQL Tasks (Assignment)
 -- Basic level
 -- Task 1
