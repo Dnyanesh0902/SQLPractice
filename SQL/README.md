@@ -32,6 +32,7 @@ It also includes:
 - Stored Procedures
 - Triggers
 - Subqueries
+- SQL Interview Questions & Answers
 
 ---
 
@@ -48,6 +49,10 @@ It also includes:
 
 ## 1. Department Table
 
+### Definition
+
+Stores department details.
+
 ```sql
 CREATE TABLE Department(
     DepartmentId INT PRIMARY KEY,
@@ -58,6 +63,10 @@ CREATE TABLE Department(
 ---
 
 ## 2. Employees Table
+
+### Definition
+
+Stores employee information such as salary, city, and joining date.
 
 ```sql
 CREATE TABLE Employees(
@@ -73,6 +82,10 @@ CREATE TABLE Employees(
 ---
 
 ## 3. Projects Table
+
+### Definition
+
+Stores project details assigned to employees.
 
 ```sql
 CREATE TABLE Projects(
@@ -111,30 +124,191 @@ INSERT INTO Employees VALUES
 
 ---
 
-# 🚀 SQL Concepts Covered
+# 🚀 SQL Concepts with Interview Questions & Answers
 
-# ✅ Basic Queries
+# ✅ SELECT Statement
 
-- SELECT
-- WHERE
-- ORDER BY
-- LIKE
-- Aggregate Functions
-- GROUP BY
-- HAVING
+## Definition
 
-Example:
+SELECT is used to retrieve data from a database table.
+
+## Example
+
+```sql
+SELECT * FROM Employees;
+```
+
+## Interview Question
+
+### Q: What is SELECT in SQL?
+
+### Answer
+
+SELECT is used to fetch data from one or more tables.
+
+---
+
+# ✅ WHERE Clause
+
+## Definition
+
+WHERE filters records based on conditions.
+
+## Example
 
 ```sql
 SELECT * FROM Employees
 WHERE Salary > 50000;
 ```
 
+## Interview Question
+
+### Q: What is WHERE clause used for?
+
+### Answer
+
+WHERE clause filters rows based on specified conditions.
+
 ---
 
-# ✅ Joins
+# ✅ ORDER BY
 
-## INNER JOIN
+## Definition
+
+ORDER BY sorts records in ascending or descending order.
+
+## Example
+
+```sql
+SELECT * FROM Employees
+ORDER BY Salary DESC;
+```
+
+## Interview Question
+
+### Q: What is ORDER BY?
+
+### Answer
+
+ORDER BY is used to sort query results.
+
+---
+
+# ✅ LIKE Operator
+
+## Definition
+
+LIKE is used for pattern matching.
+
+## Example
+
+```sql
+SELECT * FROM Employees
+WHERE Employeename LIKE 'A%';
+```
+
+## Interview Question
+
+### Q: What is LIKE operator?
+
+### Answer
+
+LIKE is used to search records using patterns.
+
+Example:
+- A% → starts with A
+- %A → ends with A
+- %A% → contains A
+
+---
+
+# ✅ Aggregate Functions
+
+## Definition
+
+Aggregate functions perform calculations on data.
+
+## Types
+
+- COUNT()
+- SUM()
+- AVG()
+- MAX()
+- MIN()
+
+## Example
+
+```sql
+SELECT AVG(Salary) FROM Employees;
+```
+
+## Interview Question
+
+### Q: What are aggregate functions?
+
+### Answer
+
+Aggregate functions perform calculations on multiple rows and return a single value.
+
+---
+
+# ✅ GROUP BY
+
+## Definition
+
+GROUP BY groups rows with the same values.
+
+## Example
+
+```sql
+SELECT City, COUNT(*) AS TotalEmployees
+FROM Employees
+GROUP BY City;
+```
+
+## Interview Question
+
+### Q: Why GROUP BY is used?
+
+### Answer
+
+GROUP BY groups similar records together for aggregate operations.
+
+---
+
+# ✅ HAVING Clause
+
+## Definition
+
+HAVING filters grouped data.
+
+## Example
+
+```sql
+SELECT City, COUNT(*) AS TotalEmployees
+FROM Employees
+GROUP BY City
+HAVING COUNT(*) > 1;
+```
+
+## Interview Question
+
+### Q: Difference between WHERE and HAVING?
+
+| WHERE | HAVING |
+|---|---|
+| Filters rows | Filters grouped records |
+| Used before GROUP BY | Used after GROUP BY |
+
+---
+
+# ✅ INNER JOIN
+
+## Definition
+
+Returns matching records from both tables.
+
+## Example
 
 ```sql
 SELECT e.Employeename, d.DepartmentName
@@ -143,7 +317,23 @@ INNER JOIN Department d
 ON d.DepartmentId = e.DepartmentID;
 ```
 
-## LEFT JOIN
+## Interview Question
+
+### Q: What is INNER JOIN?
+
+### Answer
+
+INNER JOIN returns only matching records from both tables.
+
+---
+
+# ✅ LEFT JOIN
+
+## Definition
+
+Returns all records from the left table and matching records from the right table.
+
+## Example
 
 ```sql
 SELECT e.Employeename, d.DepartmentName
@@ -152,11 +342,107 @@ LEFT JOIN Department d
 ON d.DepartmentId = e.DepartmentID;
 ```
 
+## Interview Question
+
+### Q: What is LEFT JOIN?
+
+### Answer
+
+LEFT JOIN returns all records from the left table even if there are no matches in the right table.
+
+---
+
+# ✅ Subqueries
+
+## Definition
+
+A query inside another query is called a subquery.
+
+## Example
+
+```sql
+SELECT Employeename, Salary
+FROM Employees
+WHERE Salary >
+(
+    SELECT AVG(Salary)
+    FROM Employees
+);
+```
+
+## Interview Question
+
+### Q: What is Subquery?
+
+### Answer
+
+A query written inside another query is called a subquery.
+
+---
+
+# ✅ Stored Procedures
+
+## Definition
+
+Stored Procedure is a reusable SQL block stored in the database.
+
+## Example
+
+```sql
+CREATE PROCEDURE GetAllEmployees
+AS
+BEGIN
+    SELECT * FROM Employees;
+END;
+```
+
+## Execute Procedure
+
+```sql
+EXEC GetAllEmployees;
+```
+
+## Interview Question
+
+### Q: What is Stored Procedure?
+
+### Answer
+
+A Stored Procedure is a precompiled SQL statement that can be executed multiple times.
+
+---
+
+# ✅ Triggers
+
+## Definition
+
+Triggers automatically execute when INSERT, UPDATE, or DELETE operations occur.
+
+## Example
+
+```sql
+CREATE TRIGGER trgAfterInsertEmployee
+ON Employees
+AFTER INSERT
+AS
+BEGIN
+    PRINT 'New Employee Inserted Successfully';
+END;
+```
+
+## Interview Question
+
+### Q: What is Trigger?
+
+### Answer
+
+A Trigger is a special type of stored procedure that executes automatically when database events occur.
+
 ---
 
 # ✅ Advanced SQL Queries
 
-## Find Second Highest Salary
+# Find Second Highest Salary
 
 ```sql
 SELECT MAX(Salary)
@@ -168,9 +454,17 @@ WHERE Salary <
 );
 ```
 
+## Interview Question
+
+### Q: How to find second highest salary?
+
+### Answer
+
+Use subquery with MAX() function.
+
 ---
 
-## Find Top 3 Highest Paid Employees
+# Find Top 3 Highest Paid Employees
 
 ```sql
 SELECT TOP 3 *
@@ -178,9 +472,23 @@ FROM Employees
 ORDER BY Salary DESC;
 ```
 
+## Interview Question
+
+### Q: How to fetch top records in SQL Server?
+
+### Answer
+
+Use TOP keyword.
+
+Example:
+
+```sql
+SELECT TOP 5 * FROM Employees;
+```
+
 ---
 
-## Find Employees Above Average Salary
+# Find Employees Above Average Salary
 
 ```sql
 SELECT Employeename, Salary
@@ -194,124 +502,96 @@ WHERE Salary >
 
 ---
 
-# ✅ Stored Procedures
+# 📚 Important SQL Interview Questions
 
-## Get All Employees
+# 1. What is SQL?
+
+### Answer
+
+SQL stands for Structured Query Language used to manage relational databases.
+
+---
+
+# 2. What is Primary Key?
+
+### Answer
+
+Primary Key uniquely identifies each row in a table.
+
+Example:
 
 ```sql
-CREATE PROCEDURE GetAllEmployees
-AS
-BEGIN
-    SELECT * FROM Employees;
-END;
-```
-
-Execute:
-
-```sql
-EXEC GetAllEmployees;
+DepartmentId INT PRIMARY KEY
 ```
 
 ---
 
-## Get Employee By ID
+# 3. What is Foreign Key?
 
-```sql
-CREATE PROCEDURE GetEmployeeById
-    @id INT
-AS
-BEGIN
-    SELECT *
-    FROM Employees
-    WHERE Employeeid = @id;
-END;
-```
+### Answer
+
+Foreign Key creates relationship between two tables.
 
 ---
 
-# ✅ Triggers
+# 4. Difference Between DELETE, TRUNCATE, and DROP?
 
-## After Insert Trigger
-
-```sql
-CREATE TRIGGER trgAfterInsertEmployee
-ON Employees
-AFTER INSERT
-AS
-BEGIN
-    PRINT 'New Employee Inserted Successfully';
-END;
-```
+| DELETE | TRUNCATE | DROP |
+|---|---|---|
+| Deletes rows | Removes all rows | Deletes table |
+| WHERE allowed | WHERE not allowed | Removes structure |
 
 ---
 
-## After Delete Trigger
+# 5. What is Normalization?
 
-```sql
-CREATE TRIGGER trgAfterDeleteEmployee
-ON Employees
-AFTER DELETE
-AS
-BEGIN
-    PRINT 'Employee Deleted Successfully';
-END;
-```
+### Answer
+
+Normalization reduces data redundancy and improves database structure.
 
 ---
 
-# ✅ Subqueries
+# 6. What is ACID Property?
 
-## Employees Working in IT Department
+## Answer
 
-```sql
-SELECT Employeename
-FROM Employees
-WHERE DepartmentID =
-(
-    SELECT DepartmentId
-    FROM Department
-    WHERE DepartmentName = 'IT'
-);
-```
+### A → Atomicity
+Transaction fully completes or rolls back.
+
+### C → Consistency
+Database remains valid.
+
+### I → Isolation
+Transactions do not affect each other.
+
+### D → Durability
+Committed data is permanently saved.
 
 ---
 
 # 📚 SQL Concepts Practiced
 
+- SELECT
+- WHERE
+- ORDER BY
+- LIKE
+- GROUP BY
+- HAVING
+- Aggregate Functions
 - Joins
 - Subqueries
 - Stored Procedures
 - Triggers
-- Aggregate Functions
-- Group By
-- Having
-- Sorting
-- Filtering
 - CRUD Operations
-- SQL Server Functions
-
----
-
-# 🎯 Interview Topics Covered
-
-- SQL Joins
-- Subqueries
-- GROUP BY vs HAVING
-- Stored Procedures
-- Triggers
-- Aggregate Functions
-- Primary Key
-- Foreign Key
-- SQL Optimization Basics
 
 ---
 
 # ▶️ How to Run
 
 1. Open SQL Server Management Studio (SSMS)
-2. Create a new query window
-3. Copy the complete SQL script
-4. Execute queries step-by-step
+2. Create new query window
+3. Copy complete SQL script
+4. Execute step-by-step
 
 ---
 
