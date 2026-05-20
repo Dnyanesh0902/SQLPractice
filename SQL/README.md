@@ -119,7 +119,12 @@ VALUES
 INSERT INTO Employees VALUES
 (101, 'Amit', 1, 50000, 'Pune', '2023-01-10'),
 (102, 'Rahul', 1, 75000, 'Mumbai', '2022-05-12'),
-(103, 'Sneha', 2, 40000, 'Pune', '2021-08-15');
+(103, 'Sneha', 2, 40000, 'Pune', '2021-08-15'),
+(104, 'Priya', 3, 65000, 'Delhi', '2020-02-20'),
+(105, 'Vikas', 4, 30000, 'Nagpur', '2023-09-25'),
+(106, 'Neha', 1, 85000, 'Pune', '2019-03-18'),
+(107, 'Kiran', 2, 28000, 'Mumbai', '2024-01-01'),
+(108, 'Rohit', NULL, 45000, 'Nashik', '2022-11-11');
 ```
 
 ---
@@ -604,3 +609,4 @@ Committed data is permanently saved.
 
 - GitHub: https://github.com/Dnyanesh0902
 - LinkedIn: https://www.linkedin.com/in/dnyaneshwar-kokate-04a12b258/
+- Portfolio https://dnyanesh.miracledevelopers.in
