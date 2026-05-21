@@ -57,6 +57,7 @@ SELECT * FROM Projects;
 
 -- SQL Tasks (Assignment)
 -- Basic level
+
 -- Task 1
 -- Show all employees.
 
