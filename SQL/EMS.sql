@@ -404,3 +404,6 @@ WHERE Salary =(
 );
 
 -- (Using Subquery)
+
+SELECT name FROM sys.databases;
+GO
